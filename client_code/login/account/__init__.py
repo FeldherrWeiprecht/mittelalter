@@ -9,7 +9,6 @@ class account(accountTemplate):
         self.load_ritter_info()
 
     def load_ritter_info(self):
-        # Abrufen der Ritterdaten basierend auf dem Benutzernamen
         ritter = anvil.server.call('get_ritter_info', self.username)
         
         if ritter:
