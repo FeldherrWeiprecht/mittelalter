@@ -248,7 +248,6 @@ def get_ritter_info(username):
     conn = sqlite3.connect('mittelalter.db')
     cursor = conn.cursor()
 
-    # Abfrage, um die Informationen des Ritters zu erhalten
     query = '''
     SELECT Ritter.name, Ritter.rang, Ritter.geburtsjahr, Ritter.geheimes_passwort, Burgen.name AS burg_name
     FROM Ritter
