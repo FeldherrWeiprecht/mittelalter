@@ -1,7 +1,7 @@
 components:
 - layout_properties: {grid_position: 'VBSISC,XMHOLD'}
   name: label_1
-  properties: {}
+  properties: {text: Finde den Namen des Königs heraus dem du dienst.}
   type: Label
 - layout_properties: {grid_position: 'MQFNGY,QQEEFD'}
   name: label_2
@@ -19,13 +19,13 @@ components:
   name: text_box_2
   properties: {}
   type: TextBox
-- layout_properties: {grid_position: 'HFNNJK,GSOABK'}
-  name: label_4
-  properties: {}
-  type: Label
+- layout_properties: {grid_position: 'HFNNJK,TGMSTL'}
+  name: submit_button
+  properties: {text: Anmelden}
+  type: Button
 - layout_properties: {grid_position: 'HFNNJK,ILHTTU'}
-  name: check_box_1
-  properties: {text: check_box_1}
+  name: disable_sql
+  properties: {text: SQL Schmafu abschalten}
   type: CheckBox
 - components:
   - name: repeating_panel_1
