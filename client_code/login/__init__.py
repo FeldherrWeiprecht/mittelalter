@@ -10,24 +10,20 @@ class login(loginTemplate):
         anvil.server.call('fill_database')
 
     def submit_button_click(self, **event_args):
-        username = self.username.text
-        password = self.password.text
-        disable_sql = self.disable_sql.checked  # Wert der Checkbox
-
-        open_form('login.account')
+      username = self.username.text
+      password = self.password.text
+      disable_sql = self.disable_sql.checked  
       
-        # Überprüfen, ob Benutzername und Passwort ausgefüllt sind
-        if not username or not password:
-            self.status_label.text = "Bitte Benutzername und Passwort eingeben."
-            return
-        
-        if disable_sql:
-            self.status_label.text = "SQL-Abfragen sind deaktiviert."
-        else:
-            # Andernfalls normaler Login-Check
-            if anvil.server.call('check_login', username, password):
-                self.status_label.text = "Erfolgreich eingeloggt!"
-                # Nach erfolgreichem Login das Account-Formular öffnen
-            else:
-                self.status_label.text = "Ungültiger Benutzername oder Passwort."
-
+      if not username or not password:
+          self.status_label.text = "Bitte Benutzername und Passwort eingeben!"
+          return
+      
+      if disable_sql:
+          self.status_label.text = "SQL-Abfragen sind deaktiviert."
+      else:
+          result = anvil.server.call('check_login', username, password)
+          if result == True:
+              self.status_label.text = "Erfolgreich eingeloggt!"
+              open_form('login.account')
+          else:
+              self.status_label.text = f"Fehler: {result}"  

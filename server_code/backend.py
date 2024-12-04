@@ -225,23 +225,33 @@ def print_database():
     
     conn.close()
 
+import sqlite3
+
 @anvil.server.callable
 def check_login(username, password, disable_sql=False):
     if disable_sql:
-      return False
-    conn = sqlite3.connect('mittelalter.db')
-    cursor = conn.cursor()
+        return "SQL-Abfragen sind deaktiviert."  # Antwort im Falle von deaktivierten SQL-Abfragen
+    try:
+        # Verbindung zur SQLite-Datenbank herstellen
+        conn = sqlite3.connect('mittelalter.db')
+        cursor = conn.cursor()
 
-    query = f"SELECT * FROM Ritter WHERE name = '{username}' AND geheimes_passwort = '{password}'"
-    cursor.execute(query)
-    user = cursor.fetchone()
-    
-    conn.close()
-    
-    if user:
-        return True 
-    else:
-        return False
+        # SQL-Abfrage zur Überprüfung des Benutzers
+        query = f"SELECT * FROM Ritter WHERE name = '{username}' AND geheimes_passwort = '{password}'"
+        cursor.execute(query)
+        user = cursor.fetchone()
+
+        conn.close()
+
+        # Wenn ein Benutzer gefunden wurde, erfolgreich anmelden
+        if user:
+            return True
+        else:
+            return "Ungültiger Benutzername oder Passwort."  # Benutzername oder Passwort sind falsch
+
+    except sqlite3.Error as e:
+        # SQLite Fehler abfangen und Fehlermeldung zurückgeben
+        return f"SQL Fehler: {str(e)}"  # Gibt den von SQLite erzeugten Fehler aus
 
 @anvil.server.callable
 def get_ritter_info(username):
