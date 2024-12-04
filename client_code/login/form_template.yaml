@@ -1,8 +1,16 @@
 components:
+- layout_properties: {grid_position: 'KQKXHL,BQLDDG'}
+  name: label_1
+  properties: {text: username}
+  type: Label
 - layout_properties: {grid_position: 'KQKXHL,GJXPQE'}
   name: username
   properties: {}
   type: TextBox
+- layout_properties: {grid_position: 'CVGZKL,YJWUWI'}
+  name: label_2
+  properties: {text: password}
+  type: Label
 - layout_properties: {grid_position: 'CVGZKL,LBHNGK'}
   name: password
   properties: {}
@@ -10,7 +18,7 @@ components:
 - event_bindings: {click: submit_button_click}
   layout_properties: {grid_position: 'TCDXQH,IVFNHK'}
   name: submit_button
-  properties: {text: klick}
+  properties: {text: login}
   type: Button
 - layout_properties: {grid_position: 'QDZIQM,TDNSUN'}
   name: status_label
@@ -18,7 +26,7 @@ components:
   type: Label
 - layout_properties: {grid_position: 'EIHBFP,ROKAWV'}
   name: disable_sql
-  properties: {text: ''}
+  properties: {text: SQL Off}
   type: CheckBox
 container: {type: ColumnPanel}
 is_package: true

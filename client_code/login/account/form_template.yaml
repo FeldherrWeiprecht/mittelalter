@@ -1,19 +1,30 @@
 components:
 - layout_properties: {grid_position: 'NNVZJH,BEVHTR'}
   name: label_info
-  properties: {text: Find heraus wie viel Ritter der König mit den meisten Rittern hat.}
+  properties: {text: Info}
   type: Label
 - layout_properties: {grid_position: 'AHBUIE,WQLKUB'}
   name: sql_prompt_box
-  properties: {}
+  properties: {text: Search}
   type: TextBox
 - layout_properties: {grid_position: 'MXBERR,EYBHAA'}
   name: submit_button
-  properties: {text: klick}
+  properties: {text: prove}
   type: Button
-- layout_properties: {grid_position: 'EUFHKL,EUBWPZ'}
-  name: status_label
-  properties: {}
-  type: Label
+- components:
+  - name: repeating_panel_1
+    properties: {item_template: login.account.RowTemplate1}
+    type: RepeatingPanel
+  - name: status_label
+    properties: {}
+    type: Label
+  layout_properties: {grid_position: 'VOPOSV,RTBMJV'}
+  name: data_grid_1
+  properties:
+    columns:
+    - {data_key: column_1, id: JKSDUP, title: ''}
+    - {data_key: column_2, id: VJQQOR, title: Column 2}
+    - {data_key: column_3, id: OJLQEN, title: Column 3}
+  type: DataGrid
 container: {type: ColumnPanel}
 is_package: true

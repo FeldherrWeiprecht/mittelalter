@@ -15,6 +15,11 @@ class login(loginTemplate):
         password = self.password.text
         disable_sql = self.disable_sql.checked  # Wert der Checkbox
         
+        # Überprüfen, ob Benutzername und Passwort ausgefüllt sind
+        if not username or not password:
+            self.status_label.text = "Bitte Benutzername und Passwort eingeben."
+            return
+        
         if disable_sql:
             self.status_label.text = "SQL-Abfragen sind deaktiviert."
         else:
@@ -27,7 +32,7 @@ class login(loginTemplate):
                 self.status_label.text = "Ungültiger Benutzername oder Passwort."
 
     def open_account_form(self, username):
-        # Hier instanziierst du das "account" Formular und zeigst es an
+        # Account-Formular instanziieren und anzeigen
         account_form = account(username=username)  # Dein Account-Formular
-        account_form.show()  # Das Formular wird angezeigt
-        self.clear()  # Löscht das aktuelle Formular (optional)
+        #self.content_panel.clear()  # Vorheriges Formular löschen, falls nötig
+       # self.content_panel.add_component(account_form)  # Formular hinzufügen
