@@ -1,28 +1,41 @@
 components:
-- layout_properties: {grid_position: 'NNVZJH,BEVHTR'}
-  name: label_info
-  properties: {text: Info}
+- layout_properties: {grid_position: 'VBSISC,XMHOLD'}
+  name: label_1
+  properties: {}
   type: Label
-- layout_properties: {grid_position: 'AHBUIE,WQLKUB'}
-  name: sql_prompt_box
-  properties: {text: Search}
+- layout_properties: {grid_position: 'MQFNGY,QQEEFD'}
+  name: label_2
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'MQFNGY,KBOJJK'}
+  name: label_3
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'CNKNUH,BZIDOE'}
+  name: text_box_1
+  properties: {}
   type: TextBox
-- layout_properties: {grid_position: 'MXBERR,EYBHAA'}
-  name: submit_button
-  properties: {text: prove}
-  type: Button
+- layout_properties: {grid_position: 'TSLAIG,WPXXWJ'}
+  name: text_box_2
+  properties: {}
+  type: TextBox
+- layout_properties: {grid_position: 'HFNNJK,GSOABK'}
+  name: label_4
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'HFNNJK,ILHTTU'}
+  name: check_box_1
+  properties: {text: check_box_1}
+  type: CheckBox
 - components:
   - name: repeating_panel_1
-    properties: {item_template: login.account.RowTemplate1}
+    properties: {item_template: login.account.RowTemplate2}
     type: RepeatingPanel
-  - name: status_label
-    properties: {}
-    type: Label
-  layout_properties: {grid_position: 'VOPOSV,RTBMJV'}
+  layout_properties: {grid_position: 'POGYKQ,MFIXTG'}
   name: data_grid_1
   properties:
     columns:
-    - {data_key: column_1, id: JKSDUP, title: ''}
+    - {data_key: column_1, id: JKSDUP, title: Column 1}
     - {data_key: column_2, id: VJQQOR, title: Column 2}
     - {data_key: column_3, id: OJLQEN, title: Column 3}
   type: DataGrid

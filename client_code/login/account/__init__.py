@@ -3,7 +3,7 @@ from anvil import *
 import anvil.server
 
 class account(accountTemplate):
-    def __init__(self, username, **properties):
-        self.init_components(**properties)
-        self.username = username
-        
+  def __init__(self, **properties):
+    self.init_components(**properties)
+
+    # Any code you write here will run before the form opens.
