@@ -1,6 +1,5 @@
 import anvil.server
 import sqlite3
-import random
 import string
 from datetime import datetime
 
@@ -106,96 +105,109 @@ def create_database():
     conn.commit()
     conn.close()
 
-# Hilfsfunktion für ein zufälliges Passwort (geheime Phrase)
-def generate_secret_phrase(length=8):
-    characters = string.ascii_letters + string.digits + string.punctuation
-    return ''.join(random.choice(characters) for _ in range(length))
+# Feste geheime Passwörter für die Ritter
+def get_fixed_secret_phrases():
+    return [
+        'Geheim1', 'Geheim2', 'Geheim3', 'Geheim4', 'Geheim5', 
+        'Geheim6', 'Geheim7', 'Geheim8', 'Geheim9', 'Geheim10'
+    ]
 
 @anvil.server.callable
 def fill_database():
     conn = get_connection()
     cursor = conn.cursor()
 
+    # Feste Werte für die Daten
     koenige_namen = ['Aldric', 'Berengar', 'Willelm', 'Thorin', 'Oswin', 'Eldric', 'Lothar', 'Georg', 'Erik', 'Sigurd']
     burgen_namen = ['Drachenstein', 'Eisenwall', 'Felsenburg', 'Goldberg', 'Eisenschmiede', 'Schattenburg', 'Burg der Ahnen', 'Sturmfels', 'Hohenstein', 'Weißhorn']
     burgen_orte = ['Nordreich', 'Südmark', 'Westland', 'Ostgebirg', 'Ebenwald', 'Silberthal', 'Steinreich', 'Hinterland', 'Dämmerwald', 'Frostgrenze']
     ritter_rang = ['Hochadel', 'Vassal', 'Bauernritter', 'Erbritter', 'Freier Ritter', 'Landritter', 'Schwertbruder', 'Königsritter', 'Tafelritter', 'Schildbruder']
     dorf_namen = ['Eisenwald', 'Drachenhain', 'Sturmfeld', 'Nachtweide', 'Hohenwacht', 'Greifenau', 'Eichental', 'Flammenhöhe', 'Weidenbach', 'Löwenhain']
-    
-    def random_date(start_year=1000, end_year=1200):
-        """Hilfsfunktion zum Erzeugen eines zufälligen Datums im Jahr"""
-        return f"{random.randint(start_year, end_year)}-01-01"
+
+    # Festgelegte Daten für jedes Feld
+    koenige_daten = [
+        ('Aldric', '1001-01-01', '1050-12-31'),
+        ('Berengar', '1010-01-01', '1060-12-31'),
+        ('Willelm', '1020-01-01', '1070-12-31'),
+        ('Thorin', '1030-01-01', '1080-12-31'),
+        ('Oswin', '1040-01-01', '1090-12-31'),
+        ('Eldric', '1050-01-01', '1100-12-31'),
+        ('Lothar', '1060-01-01', '1110-12-31'),
+        ('Georg', '1070-01-01', '1120-12-31'),
+        ('Erik', '1080-01-01', '1130-12-31'),
+        ('Sigurd', '1090-01-01', '1140-12-31')
+    ]
+
+    burgen_daten = [
+        ('Drachenstein', 'Nordreich', 1001, 1),
+        ('Eisenwall', 'Südmark', 1020, 2),
+        ('Felsenburg', 'Westland', 1030, 3),
+        ('Goldberg', 'Ostgebirg', 1040, 4),
+        ('Eisenschmiede', 'Ebenwald', 1050, 5),
+        ('Schattenburg', 'Silberthal', 1060, 6),
+        ('Burg der Ahnen', 'Steinreich', 1070, 7),
+        ('Sturmfels', 'Hinterland', 1080, 8),
+        ('Hohenstein', 'Dämmerwald', 1090, 9),
+        ('Weißhorn', 'Frostgrenze', 1100, 10)
+    ]
+
+    ritter_daten = [
+        ('Ritter 1', 'Hochadel', 1005, 1),
+        ('Ritter 2', 'Vassal', 1015, 2),
+        ('Ritter 3', 'Bauernritter', 1025, 3),
+        ('Ritter 4', 'Erbritter', 1035, 4),
+        ('Ritter 5', 'Freier Ritter', 1045, 5),
+        ('Ritter 6', 'Landritter', 1055, 6),
+        ('Ritter 7', 'Schwertbruder', 1065, 7),
+        ('Ritter 8', 'Königsritter', 1075, 8),
+        ('Ritter 9', 'Tafelritter', 1085, 9),
+        ('Ritter 10', 'Schildbruder', 1095, 10)
+    ]
+
+    dorf_daten = [
+        ('Eisenwald', 150, 1),
+        ('Drachenhain', 200, 2),
+        ('Sturmfeld', 250, 3),
+        ('Nachtweide', 300, 4),
+        ('Hohenwacht', 350, 5),
+        ('Greifenau', 400, 6),
+        ('Eichental', 450, 7),
+        ('Flammenhöhe', 500, 8),
+        ('Weidenbach', 550, 9),
+        ('Löwenhain', 600, 10)
+    ]
+
+    # Liste der festen Passwörter für die Ritter
+    fixed_secret_phrases = get_fixed_secret_phrases()
 
     # Könige einfügen
-    for name in koenige_namen:
-        thronbeginn = random_date(1000, 1050)
-        thronende = random_date(1051, 1100)
+    for name, thronbeginn, thronende in koenige_daten:
         cursor.execute('''
         INSERT INTO Koenige (name, thronbeginn, thronende)
         VALUES (?, ?, ?)
         ''', (name, thronbeginn, thronende))
 
     # Burgen einfügen
-    for i in range(10):
-        name = burgen_namen[i]
-        ort = burgen_orte[i]
-        erbaut_im = random.randint(900, 1100)
-        koenig_id = random.randint(1, 10)  
+    for name, ort, erbaut_im, koenig_id in burgen_daten:
         cursor.execute('''
         INSERT INTO Burgen (name, ort, erbaut_im, koenig_id)
         VALUES (?, ?, ?, ?)
         ''', (name, ort, erbaut_im, koenig_id))
 
-    # Ritter einfügen, mit geheimem Passwort
-    for i in range(10):
-        name = f"Ritter {i+1}"
-        rang = random.choice(ritter_rang)
-        geburtsjahr = random.randint(950, 1050)
-        burg_id = random.randint(1, 10)
-        geheimes_passwort = generate_secret_phrase()  # Generiere geheimes Passwort für jeden Ritter
+    # Ritter einfügen, mit festem geheimen Passwort
+    for i, (name, rang, geburtsjahr, burg_id) in enumerate(ritter_daten):
+        geheimes_passwort = fixed_secret_phrases[i]  # Verwende das vordefinierte Passwort
         cursor.execute('''
         INSERT INTO Ritter (name, rang, geburtsjahr, burg_id, geheimes_passwort)
         VALUES (?, ?, ?, ?, ?)
         ''', (name, rang, geburtsjahr, burg_id, geheimes_passwort))
 
     # Dörfer einfügen
-    for i in range(10):
-        name = dorf_namen[i]
-        bewohnerzahl = random.randint(50, 200)
-        burg_id = random.randint(1, 10) 
+    for name, bewohnerzahl, burg_id in dorf_daten:
         cursor.execute('''
         INSERT INTO Doerfer (name, bewohnerzahl, burg_id)
         VALUES (?, ?, ?)
         ''', (name, bewohnerzahl, burg_id))
-
-    # Schlachten einfügen
-    for i in range(10):
-        schlacht_name = f"Schlacht {i+1}"
-        datum = random_date(1050, 1100)
-        burg_1_id = random.randint(1, 10)
-        burg_2_id = random.randint(1, 10)
-        sieger_burg_id = random.choice([burg_1_id, burg_2_id])
-        cursor.execute('''
-        INSERT INTO Schlachten (name, datum, burg_1_id, burg_2_id, sieger_burg_id)
-        VALUES (?, ?, ?, ?, ?)
-        ''', (schlacht_name, datum, burg_1_id, burg_2_id, sieger_burg_id))
-
-    # Ritter-Schlachten einfügen
-    for ritter_id in range(1, 11):
-        for schlacht_id in range(1, 11):
-            rolle = random.choice(['Angreifer', 'Verteidiger'])
-            cursor.execute('''
-            INSERT INTO Ritter_Schlachten (ritter_id, schlacht_id, rolle)
-            VALUES (?, ?, ?)
-            ''', (ritter_id, schlacht_id, rolle))
-
-    # Armeen einfügen
-    for ritter_id in range(1, 11):
-        anzahl = random.randint(50, 150)
-        cursor.execute('''
-        INSERT INTO Armeen (ritter_id, anzahl)
-        VALUES (?, ?)
-        ''', (ritter_id, anzahl))
 
     conn.commit()
     conn.close()
@@ -225,14 +237,11 @@ def print_database():
     
     conn.close()
 
-import sqlite3
-
 @anvil.server.callable
 def check_login(username, password, disable_sql=False):
     if disable_sql:
         return "SQL-Abfragen sind deaktiviert."  # Antwort im Falle von deaktivierten SQL-Abfragen
     try:
-        # Verbindung zur SQLite-Datenbank herstellen
         conn = sqlite3.connect('mittelalter.db')
         cursor = conn.cursor()
 
@@ -243,38 +252,47 @@ def check_login(username, password, disable_sql=False):
 
         conn.close()
 
-        # Wenn ein Benutzer gefunden wurde, erfolgreich anmelden
         if user:
-            return True
+            return True  # Anmeldung erfolgreich
         else:
-            return "Ungültiger Benutzername oder Passwort."  # Benutzername oder Passwort sind falsch
+            return "Ungültiger Benutzername oder Passwort."  # Fehlerfall
 
     except sqlite3.Error as e:
-        # SQLite Fehler abfangen und Fehlermeldung zurückgeben
         return f"SQL Fehler: {str(e)}"  # Gibt den von SQLite erzeugten Fehler aus
 
 @anvil.server.callable
-def get_ritter_info(username):
-    conn = sqlite3.connect('mittelalter.db')
-    cursor = conn.cursor()
+def get_ritter_data(username):
+    try:
+        conn = sqlite3.connect('mittelalter.db')
+        cursor = conn.cursor()
 
-    query = '''
-    SELECT Ritter.name, Ritter.rang, Ritter.geburtsjahr, Ritter.geheimes_passwort, Burgen.name AS burg_name
-    FROM Ritter
-    JOIN Burgen ON Ritter.burg_id = Burgen.id
-    WHERE Ritter.name = ?
-    '''
-    cursor.execute(query, (username,))
-    ritter = cursor.fetchone()
-    conn.close()
-    
-    if ritter:
-        return {
-            'name': ritter[0],
-            'rang': ritter[1],
-            'geburtsjahr': ritter[2],
-            'geheimes_passwort': ritter[3],
-            'burg_name': ritter[4]
-        }
-    else:
+        # Abfrage, um die Ritterdaten basierend auf dem Benutzernamen zu erhalten
+        cursor.execute('''
+            SELECT name, rang, geburtsjahr, burg_id, geheimes_passwort 
+            FROM Ritter 
+            WHERE name = ?
+        ''', (username,))
+        
+        ritter_data = cursor.fetchone()
+        
+        if ritter_data:
+            name, rang, geburtsjahr, burg_id, geheimes_passwort = ritter_data
+            
+            # Jetzt den Namen der Burg abfragen
+            cursor.execute('''
+                SELECT name FROM Burgen WHERE id = ?
+            ''', (burg_id,))
+            
+            burg_name = cursor.fetchone()
+            if burg_name:
+                burg_name = burg_name[0]  # Der Name der Burg ist das erste Element im Tuple
+
+            conn.close()
+            
+            return name, rang, geburtsjahr, burg_name, geheimes_passwort
+        else:
+            conn.close()
+            return None
+    except sqlite3.Error as e:
+        print(f"SQL Fehler: {str(e)}")
         return None

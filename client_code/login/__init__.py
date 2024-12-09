@@ -2,6 +2,7 @@ from ._anvil_designer import loginTemplate
 from anvil import *
 import anvil.server
 
+
 class login(loginTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)

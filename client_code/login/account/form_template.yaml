@@ -1,3 +1,50 @@
-components: []
+components:
+- layout_properties: {grid_position: 'EOEEUO,YNGFES'}
+  name: label_1
+  properties: {text: Finde den Ritter mit dem höchsten Rang.}
+  type: Label
+- layout_properties: {grid_position: 'FYWXGC,ERXQYV'}
+  name: text_box_1
+  properties: {}
+  type: TextBox
+- layout_properties: {grid_position: 'LZYXEO,IPNFQR'}
+  name: button_1
+  properties: {text: Suchen}
+  type: Button
+- layout_properties: {grid_position: 'LDKIVX,YSKZXV'}
+  name: status_label
+  properties: {text: ''}
+  type: Label
+- layout_properties: {grid_position: 'AXDJWB,IZOEWG'}
+  name: disable_sql
+  properties: {text: SQL Abfragen abschalten}
+  type: CheckBox
+- layout_properties: {grid_position: 'XACBGY,LSIQFZ'}
+  name: label_name
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'FMZMWV,JMJEPF'}
+  name: label_rang
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'UNIJGG,NVSCCP'}
+  name: label_geburtsjahr
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'YPGCTV,OMRXSK'}
+  name: label_burg_name
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'RTJODM,AOXRMP'}
+  name: label_geheimes_passwort
+  properties: {}
+  type: Label
+- event_bindings: {click: logout_button_click}
+  layout_properties: {grid_position: 'BPEECA,VHIROI'}
+  name: logout_button
+  properties:
+    text: |
+      Abmelden
+  type: Button
 container: {type: ColumnPanel}
 is_package: true
