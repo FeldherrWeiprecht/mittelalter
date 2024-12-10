@@ -296,3 +296,26 @@ def get_ritter_data(username):
     except sqlite3.Error as e:
         print(f"SQL Fehler: {str(e)}")
         return None
+
+@anvil.server.callable
+def get_highest_rank_ritter_insecure(username):
+    try:
+        conn = sqlite3.connect('mittelalter.db')
+        cursor = conn.cursor()
+
+        # Hier erlauben wir SQL-Injection! (unsicher)
+        query = f"SELECT name, rang FROM Ritter WHERE name = '{username}'"
+        cursor.execute(query)
+        
+        ritter_data = cursor.fetchone()
+        
+        if ritter_data:
+            name, rang = ritter_data
+            conn.close()
+            return name, rang
+        
+        conn.close()
+        return None
+    except sqlite3.Error as e:
+        print(f"SQL Fehler: {str(e)}")
+        return None

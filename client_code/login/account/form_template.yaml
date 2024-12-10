@@ -4,11 +4,11 @@ components:
   properties: {text: Finde den Ritter mit dem höchsten Rang.}
   type: Label
 - layout_properties: {grid_position: 'FYWXGC,ERXQYV'}
-  name: text_box_1
+  name: search_box
   properties: {}
   type: TextBox
 - layout_properties: {grid_position: 'LZYXEO,IPNFQR'}
-  name: button_1
+  name: search_button
   properties: {text: Suchen}
   type: Button
 - layout_properties: {grid_position: 'LDKIVX,YSKZXV'}

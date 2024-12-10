@@ -3,35 +3,56 @@ from anvil import *
 import anvil.server
 
 class account(accountTemplate):
-  def __init__(self, **properties):
-    self.init_components(**properties)
-    
-    # Hier setzen wir den Ritternamen direkt. Du kannst diesen Namen auch dynamisch über ein Textfeld setzen.
-    self.ritter_name = "Ritter 1"  # Beispielname des Ritters
-    
-    # Lade die Ritter-Daten basierend auf dem Namen
-    self.load_ritter_data()
+    def __init__(self, **properties):
+        self.init_components(**properties)
+        self.ritter_name = "Ritter 1"  # Beispielname des Ritters
+        self.load_ritter_data()
 
-  def load_ritter_data(self):
-    try:
-        # Verwende den festen Ritter-Namen oder lasse ihn vom Benutzer eingeben
-        username = self.ritter_name  # Hier könnte auch ein Eingabefeld verwendet werden
-        
-        # Rufe die Ritter-Daten aus der Datenbank ab
-        ritter_data = anvil.server.call('get_ritter_data', username)
-        
-        if ritter_data:
-            # Angenommene Ritter-Datenstruktur: (name, rang, geburtsjahr, burg_name, geheimes_passwort)
-            name, rang, geburtsjahr, burg_name, geheimes_passwort = ritter_data
+    def load_ritter_data(self):
+        try:
+            username = self.ritter_name
+            ritter_data = anvil.server.call('get_ritter_data', username)
             
-            # Setze die Labels mit den abgerufenen Werten
-            self.label_name.text = f"Name: {name}"
-            self.label_rang.text = f"Rang: {rang}"
-            self.label_geburtsjahr.text = f"Geburtsjahr: {geburtsjahr}"
-            self.label_burg_name.text = f"Burg: {burg_name}"  # Burg-Name anzeigen
-            self.label_geheimes_passwort.text = f"Geheimes Passwort: {geheimes_passwort}"
-        else:
-            # Wenn keine Daten gefunden wurden
-            alert("Ritter nicht gefunden!")
-    except Exception as e:
-        alert(f"Fehler beim Laden der Ritterdaten: {str(e)}")
+            if ritter_data:
+                name, rang, geburtsjahr, burg_name, geheimes_passwort = ritter_data
+                self.label_name.text = f"Name: {name}"
+                self.label_rang.text = f"Rang: {rang}"
+                self.label_geburtsjahr.text = f"Geburtsjahr: {geburtsjahr}"
+                self.label_burg_name.text = f"Burg: {burg_name}"
+                self.label_geheimes_passwort.text = f"Geheimes Passwort: {geheimes_passwort}"
+            else:
+                alert("Ritter nicht gefunden!")
+        except Exception as e:
+            alert(f"Fehler beim Laden der Ritterdaten: {str(e)}")
+
+    def search_button_click(self, **event_args):
+        search_username = self.search_box.text
+        disable_sql = self.disable_sql.checked  # Abfrage, ob SQL-Injection deaktiviert ist
+
+        if not search_username:
+            self.status_label.text = "Bitte einen Benutzernamen eingeben!"
+            return
+        
+        # Aufruf der Funktion, um den Ritter zu suchen
+        try:
+            # Überprüfung, ob SQL-Injection aktiviert ist
+            if disable_sql:
+                self.status_label.text = "SQL-Injection deaktiviert."
+                # Sicherer Aufruf mit Parameterbindung
+                result = anvil.server.call('get_highest_rank_ritter_safe', search_username)
+            else:
+                self.status_label.text = "SQL-Injection aktiviert!"
+                # Unsicherer Aufruf mit SQL-Injection (direkte Einfügung des Benutzernamens)
+                result = anvil.server.call('get_highest_rank_ritter_insecure', search_username)
+            
+            if result:
+                name, rang = result
+                self.status_label.text = f"Erfolg! Höchster Rang: {rang} - Ritter: {name}"
+            else:
+                self.status_label.text = "Fehler: Ritter nicht gefunden."
+        
+        except Exception as e:
+            self.status_label.text = f"Fehler bei der Suche: {str(e)}"
+
+    def logout_button_click(self, **event_args):
+        open_form('login')
