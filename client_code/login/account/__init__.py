@@ -38,16 +38,17 @@ class account(accountTemplate):
             # Überprüfung, ob SQL-Injection aktiviert ist
             if disable_sql:
                 # SQL-Injection verhindern (sichere Methode)
-                self.status_label.text = "SQL-Injection deaktiviert."
-                result = anvil.server.call('get_highest_rank_ritter_safe', search_username)
+                result = 0
             else:
                 # SQL-Injection zulassen (unsichere Methode)
-                self.status_label.text = "SQL-Injection aktiviert!"
                 result = anvil.server.call('get_highest_rank_ritter_insecure', search_username)
             
             if result:
                 name, rang = result
                 self.status_label.text = f"Erfolg! Höchster Rang: {rang} - Ritter: {name}"
+            elif result == 0:
+              self.status_label.text = "SQL-Injection deaktiviert."
+
             else:
                 self.status_label.text = "Fehler: Ritter nicht gefunden."
         
