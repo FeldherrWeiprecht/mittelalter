@@ -303,7 +303,7 @@ def get_highest_rank_ritter_insecure(username):
         conn = sqlite3.connect('mittelalter.db')
         cursor = conn.cursor()
 
-        # Hier erlauben wir SQL-Injection! (unsicher)
+        # UNSICHERE SQL-Abfrage (SQL-Injection möglich)
         query = f"SELECT name, rang FROM Ritter WHERE name = '{username}'"
         cursor.execute(query)
         
