@@ -1,7 +1,7 @@
 components:
 - layout_properties: {grid_position: 'NOVTEN,VLCTQY'}
   name: label_3
-  properties: {text: 'Aufgabe 1: Melde dich an.'}
+  properties: {text: Dein Freund Gerold hat dir mitgeteilt das du eine Nachricht an den König senden sollst da er selbst keinen Zugang mehr zur Anmeldung hat deswegen sollst du dich bei deinem Ritter Account anmelden.}
   type: Label
 - layout_properties: {grid_position: 'KQKXHL,BQLDDG'}
   name: label_1

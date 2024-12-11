@@ -1,25 +1,33 @@
 components:
-- layout_properties: {grid_position: 'EOEEUO,YNGFES'}
+- layout_properties: {grid_position: 'EOEEUO,YNGFES SHVVMF,BZLBHX'}
   name: label_1
-  properties: {text: Finde den Ritter mit dem höchsten Rang.}
+  properties: {text: 'Geschafft nun sollst du noch den Ritter mit dem höchsten Rang finden denn Gerold behauptet, dass er es sei Gerold  finde heraus ob er dir einen Bären aufgebunden hat.'}
   type: Label
-- layout_properties: {grid_position: 'FYWXGC,ERXQYV'}
+- layout_properties: {grid_position: 'EOEEUO,YNGFES MIMPXG,RTQEFG'}
   name: search_box
   properties: {}
   type: TextBox
 - event_bindings: {click: search_button_click}
-  layout_properties: {grid_position: 'LZYXEO,IPNFQR'}
+  layout_properties: {grid_position: 'EOEEUO,YNGFES PFQRLR,NHAEMI'}
   name: search_button
   properties: {text: Suchen}
   type: Button
-- layout_properties: {grid_position: 'LDKIVX,YSKZXV'}
+- layout_properties: {grid_position: 'EOEEUO,YNGFES IUCEPU,ZUNCZA'}
   name: status_label
   properties: {text: ''}
   type: Label
-- layout_properties: {grid_position: 'AXDJWB,IZOEWG'}
+- layout_properties: {grid_position: 'EOEEUO,YNGFES KLCGHO,PJXHMD'}
   name: disable_sql
   properties: {text: SQL Abfragen abschalten}
   type: CheckBox
+- layout_properties: {grid_position: 'EOEEUO,CCNLNX'}
+  name: image_1
+  properties: {source: _/theme/ritter.jpg}
+  type: Image
+- layout_properties: {grid_position: 'DWGMIP,ROOTPD'}
+  name: label_2
+  properties: {text: 'Ritter Informationen:'}
+  type: Label
 - layout_properties: {grid_position: 'XACBGY,LSIQFZ'}
   name: label_name
   properties: {}
@@ -46,6 +54,10 @@ components:
   properties:
     text: |
       Abmelden
+  type: Button
+- layout_properties: {grid_position: 'BPEECA,DZBMVF'}
+  name: continue_button
+  properties: {text: Weiter}
   type: Button
 container: {type: ColumnPanel}
 is_package: true

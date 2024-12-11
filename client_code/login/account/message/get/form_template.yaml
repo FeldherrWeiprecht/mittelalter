@@ -1,0 +1,19 @@
+components:
+- layout_properties: {grid_position: 'PNYYKN,QJBVZC'}
+  name: label_1
+  properties: {text: 'Du bist nun ein Spion, der von dem Zauberer Magnarion der Ewige gesandt wurde, der, wie es scheint, nicht mehr auf der Seite seines alten Freundes, des Königs, steht. Er hat dir aufgetragen, jeden Kundschafter auszurauben und zu überprüfen, ob eine Botschaft dabei ist, die mit ''cc'' verschlüsselt wurde. Dies ist hier der Fall, also musst du die Botschaft entschlüsseln. Sollst du mit HTTP GET arbeiten, gib die Entschlüsselungsformel unten an, sobald du es geschafft hast.'}
+  type: Label
+- layout_properties: {grid_position: 'GFSFSB,SUBGWT'}
+  name: guess_box
+  properties: {}
+  type: TextBox
+- layout_properties: {grid_position: 'AHSULF,EALAJD'}
+  name: status_label
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'BUDGWH,BJDFFI'}
+  name: prove_button
+  properties: {text: Überprüfe}
+  type: Button
+container: {type: ColumnPanel}
+is_package: true
