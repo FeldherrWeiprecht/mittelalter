@@ -1,6 +1,7 @@
 unique_ids:
   assets:
     dashboard.html: 3432NYYW72VG3G2IIFJTY5ECDW2WQZQ2
+    ritter-schild-waffe-illustration-logo_20029-10.avif: '1733915498758200445013834.68515'
     ritter.jpg: '1733912040510356771493002.1439'
     single-column.html: TSY45OZBRDHFDWML6GOQREZCTE4QNCTB
     theme.css: BEFKF3W4QB3V7TY6O5RLJNAGXGJW7JXD
@@ -11,6 +12,7 @@ unique_ids:
     login.account.RowTemplate2: '1733307566107618888989357.1923'
     login.account.message: '1733911734163310225737215.3394'
     login.account.message.get: '1733912536873293450994715.1518'
+    login.account.message.get.Form1: '1733915284736685856822316.6434'
   modules: {}
   scripts: {}
   server_modules:

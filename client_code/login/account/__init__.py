@@ -57,3 +57,7 @@ class account(accountTemplate):
 
     def logout_button_click(self, **event_args):
         open_form('login')
+
+    def continue_button_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      pass

@@ -1,7 +1,7 @@
 components:
 - layout_properties: {grid_position: 'PNYYKN,QJBVZC'}
   name: label_1
-  properties: {text: 'Du bist nun ein Spion, der von dem Zauberer Magnarion der Ewige gesandt wurde, der, wie es scheint, nicht mehr auf der Seite seines alten Freundes, des Königs, steht. Er hat dir aufgetragen, jeden Kundschafter auszurauben und zu überprüfen, ob eine Botschaft dabei ist, die mit ''cc'' verschlüsselt wurde. Dies ist hier der Fall, also musst du die Botschaft entschlüsseln. Sollst du mit HTTP GET arbeiten, gib die Entschlüsselungsformel unten an, sobald du es geschafft hast.'}
+  properties: {text: 'Du bist nun ein Spion, der von dem Zauberer Magnarion der Ewige gesandt wurde, der, wie es scheint, nicht mehr auf der Seite seines alten Freundes, des Königs, steht. Er hat dir aufgetragen, jeden Kundschafter auszurauben und zu überprüfen, ob eine Botschaft dabei ist, die mit ''cc'' verschlüsselt wurde. Dies ist hier der Fall, also musst du die Botschaft entschlüsseln. Du sollst mit HTTP GET arbeiten, gib die Entschlüsselungsformel unten an, sobald du es geschafft hast. Falls du nicht weißt wie die Formel aussehne muss stell dir mal die Cäsar verschlüssel vor dabei wird immer um 26 im alphabet verschoben also gib an x+2.'}
   type: Label
 - layout_properties: {grid_position: 'GFSFSB,SUBGWT'}
   name: guess_box
@@ -11,9 +11,15 @@ components:
   name: status_label
   properties: {}
   type: Label
-- layout_properties: {grid_position: 'BUDGWH,BJDFFI'}
+- event_bindings: {click: prove_button_click}
+  layout_properties: {grid_position: 'BUDGWH,BJDFFI'}
   name: prove_button
   properties: {text: Überprüfe}
+  type: Button
+- event_bindings: {click: continue_button_click}
+  layout_properties: {grid_position: 'BUDGWH,WPCNGH'}
+  name: continue_button
+  properties: {text: Weiter}
   type: Button
 container: {type: ColumnPanel}
 is_package: true
