@@ -55,10 +55,5 @@ components:
     text: |
       Abmelden
   type: Button
-- event_bindings: {click: continue_button_click}
-  layout_properties: {grid_position: 'BPEECA,DZBMVF'}
-  name: continue_button
-  properties: {text: Weiter}
-  type: Button
 container: {type: ColumnPanel}
 is_package: true

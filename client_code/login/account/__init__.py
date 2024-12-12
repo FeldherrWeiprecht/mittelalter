@@ -46,6 +46,7 @@ class account(accountTemplate):
             if result:
                 name, rang = result
                 self.status_label.text = f"Erfolg! Höchster Rang: {rang} - Ritter: {name}"
+                open_form('login.account.message')
             elif result == 0:
               self.status_label.text = "SQL-Injection deaktiviert."
 

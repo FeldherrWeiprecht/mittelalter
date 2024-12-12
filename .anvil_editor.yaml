@@ -12,7 +12,7 @@ unique_ids:
     login.account.RowTemplate2: '1733307566107618888989357.1923'
     login.account.message: '1733911734163310225737215.3394'
     login.account.message.get: '1733912536873293450994715.1518'
-    login.account.message.get.Form1: '1733915284736685856822316.6434'
+    login.account.message.get.goal: '1733915284736685856822316.6434'
   modules: {}
   scripts: {}
   server_modules:

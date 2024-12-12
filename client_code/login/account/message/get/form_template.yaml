@@ -16,10 +16,5 @@ components:
   name: prove_button
   properties: {text: Überprüfe}
   type: Button
-- event_bindings: {click: continue_button_click}
-  layout_properties: {grid_position: 'BUDGWH,WPCNGH'}
-  name: continue_button
-  properties: {text: Weiter}
-  type: Button
 container: {type: ColumnPanel}
 is_package: true
