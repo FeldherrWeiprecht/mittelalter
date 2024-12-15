@@ -20,10 +20,6 @@ components:
   name: disable_sql
   properties: {text: SQL Abfragen abschalten}
   type: CheckBox
-- layout_properties: {grid_position: 'EOEEUO,CCNLNX'}
-  name: image_1
-  properties: {source: _/theme/ritter.jpg}
-  type: Image
 - layout_properties: {grid_position: 'DWGMIP,ROOTPD'}
   name: label_2
   properties: {text: 'Ritter Informationen:'}

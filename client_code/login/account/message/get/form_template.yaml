@@ -1,7 +1,7 @@
 components:
 - layout_properties: {grid_position: 'PNYYKN,QJBVZC'}
   name: label_1
-  properties: {text: 'Du bist nun ein Spion, der von dem Zauberer Magnarion der Ewige gesandt wurde, der, wie es scheint, nicht mehr auf der Seite seines alten Freundes, des Königs, steht. Er hat dir aufgetragen, jeden Kundschafter auszurauben und zu überprüfen, ob eine Botschaft dabei ist, die mit ''cc'' verschlüsselt wurde. Dies ist hier der Fall, also musst du die Botschaft entschlüsseln. Du sollst mit HTTP GET arbeiten, gib die Entschlüsselungsformel unten an, sobald du es geschafft hast. Falls du nicht weißt wie die Formel aussehne muss stell dir mal die Cäsar verschlüssel vor dabei wird immer um 26 im alphabet verschoben also gib an x+2.'}
+  properties: {text: 'Du bist nun ein Spion, der von dem Zauberer Magnarion der Ewige gesandt wurde, der, wie es scheint, nicht mehr auf der Seite seines alten Freundes, des Königs, steht. Er hat dir aufgetragen, jeden Kundschafter auszurauben und zu überprüfen, ob eine Botschaft dabei ist, die mit ''cc'' verschlüsselt wurde. Dies ist hier der Fall, also musst du die Botschaft entschlüsseln. Dafür musst du mithilfe von HTTP Get die Package-Destination ebenfalls auf cc stellen, dann sollte der Text korrekt untenstehen.'}
   type: Label
 - layout_properties: {grid_position: 'GFSFSB,SUBGWT'}
   name: guess_box
