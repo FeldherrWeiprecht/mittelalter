@@ -2,12 +2,6 @@ from ._anvil_designer import getTemplate
 from anvil import *
 import anvil.server
 
-
-
-from ._anvil_designer import getTemplate
-from anvil import *
-import anvil.server
-
 class get(getTemplate):
     def __init__(self, **properties):
         # Initialisierung der Komponenten
