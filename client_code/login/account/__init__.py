@@ -5,7 +5,7 @@ import anvil.server
 class account(accountTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
-        self.ritter_name = "Ritter 1"  # Beispielname des Ritters
+        self.ritter_name = "Ritter 1"
         self.load_ritter_data()
 
     def load_ritter_data(self):
@@ -27,20 +27,16 @@ class account(accountTemplate):
 
     def search_button_click(self, **event_args):
         search_username = self.search_box.text
-        disable_sql = self.disable_sql.checked  # Abfrage, ob SQL-Injection deaktiviert ist
+        disable_sql = self.disable_sql.checked
 
         if not search_username:
             self.status_label.text = "Bitte einen Benutzernamen eingeben!"
             return
         
-        # Aufruf der Funktion, um den Ritter zu suchen
         try:
-            # Überprüfung, ob SQL-Injection aktiviert ist
             if disable_sql:
-                # SQL-Injection verhindern (sichere Methode)
                 result = 0
             else:
-                # SQL-Injection zulassen (unsichere Methode)
                 result = anvil.server.call('get_highest_rank_ritter_insecure', search_username)
             
             if result:
@@ -49,7 +45,6 @@ class account(accountTemplate):
                 open_form('login.account.message')
             elif result == 0:
               self.status_label.text = "SQL-Injection deaktiviert."
-
             else:
                 self.status_label.text = "Fehler: Ritter nicht gefunden."
         
@@ -58,7 +53,3 @@ class account(accountTemplate):
 
     def logout_button_click(self, **event_args):
         open_form('login')
-
-    def continue_button_click(self, **event_args):
-      """This method is called when the button is clicked"""
-      pass

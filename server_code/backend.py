@@ -3,7 +3,6 @@ import sqlite3
 import string
 from datetime import datetime
 
-
 def get_connection():
     return sqlite3.connect('mittelalter.db')
 
@@ -105,7 +104,6 @@ def create_database():
     conn.commit()
     conn.close()
 
-# Feste geheime Passwörter für die Ritter
 def get_fixed_secret_phrases():
     return [
         'Geheim1', 'Geheim2', 'Geheim3', 'Geheim4', 'Geheim5', 
@@ -117,14 +115,12 @@ def fill_database():
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Feste Werte für die Daten
     koenige_namen = ['Aldric', 'Berengar', 'Willelm', 'Thorin', 'Oswin', 'Eldric', 'Lothar', 'Georg', 'Erik', 'Sigurd']
     burgen_namen = ['Drachenstein', 'Eisenwall', 'Felsenburg', 'Goldberg', 'Eisenschmiede', 'Schattenburg', 'Burg der Ahnen', 'Sturmfels', 'Hohenstein', 'Weißhorn']
     burgen_orte = ['Nordreich', 'Südmark', 'Westland', 'Ostgebirg', 'Ebenwald', 'Silberthal', 'Steinreich', 'Hinterland', 'Dämmerwald', 'Frostgrenze']
     ritter_rang = ['Hochadel', 'Vassal', 'Bauernritter', 'Erbritter', 'Freier Ritter', 'Landritter', 'Schwertbruder', 'Königsritter', 'Tafelritter', 'Schildbruder']
     dorf_namen = ['Eisenwald', 'Drachenhain', 'Sturmfeld', 'Nachtweide', 'Hohenwacht', 'Greifenau', 'Eichental', 'Flammenhöhe', 'Weidenbach', 'Löwenhain']
 
-    # Festgelegte Daten für jedes Feld
     koenige_daten = [
         ('Aldric', '1001-01-01', '1050-12-31'),
         ('Berengar', '1010-01-01', '1060-12-31'),
@@ -177,32 +173,27 @@ def fill_database():
         ('Löwenhain', 600, 10)
     ]
 
-    # Liste der festen Passwörter für die Ritter
     fixed_secret_phrases = get_fixed_secret_phrases()
 
-    # Könige einfügen
     for name, thronbeginn, thronende in koenige_daten:
         cursor.execute('''
         INSERT INTO Koenige (name, thronbeginn, thronende)
         VALUES (?, ?, ?)
         ''', (name, thronbeginn, thronende))
 
-    # Burgen einfügen
     for name, ort, erbaut_im, koenig_id in burgen_daten:
         cursor.execute('''
         INSERT INTO Burgen (name, ort, erbaut_im, koenig_id)
         VALUES (?, ?, ?, ?)
         ''', (name, ort, erbaut_im, koenig_id))
 
-    # Ritter einfügen, mit festem geheimen Passwort
     for i, (name, rang, geburtsjahr, burg_id) in enumerate(ritter_daten):
-        geheimes_passwort = fixed_secret_phrases[i]  # Verwende das vordefinierte Passwort
+        geheimes_passwort = fixed_secret_phrases[i] 
         cursor.execute('''
         INSERT INTO Ritter (name, rang, geburtsjahr, burg_id, geheimes_passwort)
         VALUES (?, ?, ?, ?, ?)
         ''', (name, rang, geburtsjahr, burg_id, geheimes_passwort))
 
-    # Dörfer einfügen
     for name, bewohnerzahl, burg_id in dorf_daten:
         cursor.execute('''
         INSERT INTO Doerfer (name, bewohnerzahl, burg_id)
@@ -240,12 +231,11 @@ def print_database():
 @anvil.server.callable
 def check_login(username, password, disable_sql=False):
     if disable_sql:
-        return "SQL-Abfragen sind deaktiviert."  # Antwort im Falle von deaktivierten SQL-Abfragen
+        return "SQL-Abfragen sind deaktiviert."
     try:
         conn = sqlite3.connect('mittelalter.db')
         cursor = conn.cursor()
 
-        # SQL-Abfrage zur Überprüfung des Benutzers
         query = f"SELECT * FROM Ritter WHERE name = '{username}' AND geheimes_passwort = '{password}'"
         cursor.execute(query)
         user = cursor.fetchone()
@@ -253,12 +243,12 @@ def check_login(username, password, disable_sql=False):
         conn.close()
 
         if user:
-            return True  # Anmeldung erfolgreich
+            return True
         else:
-            return "Ungültiger Benutzername oder Passwort."  # Fehlerfall
+            return "Ungültiger Benutzername oder Passwort."
 
     except sqlite3.Error as e:
-        return f"SQL Fehler: {str(e)}"  # Gibt den von SQLite erzeugten Fehler aus
+        return f"SQL Fehler: {str(e)}"
 
 @anvil.server.callable
 def get_ritter_data(username):
@@ -266,7 +256,6 @@ def get_ritter_data(username):
         conn = sqlite3.connect('mittelalter.db')
         cursor = conn.cursor()
 
-        # Abfrage, um die Ritterdaten basierend auf dem Benutzernamen zu erhalten
         cursor.execute('''
             SELECT name, rang, geburtsjahr, burg_id, geheimes_passwort 
             FROM Ritter 
@@ -278,14 +267,13 @@ def get_ritter_data(username):
         if ritter_data:
             name, rang, geburtsjahr, burg_id, geheimes_passwort = ritter_data
             
-            # Jetzt den Namen der Burg abfragen
             cursor.execute('''
                 SELECT name FROM Burgen WHERE id = ?
             ''', (burg_id,))
             
             burg_name = cursor.fetchone()
             if burg_name:
-                burg_name = burg_name[0]  # Der Name der Burg ist das erste Element im Tuple
+                burg_name = burg_name[0]
 
             conn.close()
             
@@ -293,6 +281,7 @@ def get_ritter_data(username):
         else:
             conn.close()
             return None
+          
     except sqlite3.Error as e:
         print(f"SQL Fehler: {str(e)}")
         return None

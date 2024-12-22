@@ -1,7 +1,7 @@
 components:
 - layout_properties: {grid_position: 'ZNJKKQ,AWFMMF'}
   name: label_1
-  properties: {align: center, text: 'Glückwunsch, du bist ein wahrer Kämpfer, sowohl im Ritterdasein als auch im DBI-Unterricht.'}
+  properties: {align: center, text: 'Glückwunsch, du bist ein wahrer Kämpfer, sowohl im Ritterdasein als auch im DBI-Unterricht!'}
   type: Label
 container: {type: ColumnPanel}
 is_package: true
