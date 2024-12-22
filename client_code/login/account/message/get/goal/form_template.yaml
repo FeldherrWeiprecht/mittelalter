@@ -1,5 +1,5 @@
 components:
-- layout_properties: {grid_position: 'ZNJKKQ,AWFMMF'}
+- layout_properties: {grid_position: 'DCGNTJ,AGIDGR'}
   name: label_1
   properties: {align: center, text: 'Glückwunsch, du bist ein wahrer Kämpfer, sowohl im Ritterdasein als auch im DBI-Unterricht!'}
   type: Label

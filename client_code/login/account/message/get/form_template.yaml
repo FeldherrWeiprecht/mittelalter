@@ -3,10 +3,6 @@ components:
   name: label_1
   properties: {text: 'Du bist nun ein Spion, der von dem Zauberer Magnarion der Ewige gesandt wurde, der, wie es scheint, nicht mehr auf der Seite seines alten Freundes, des Königs, steht. Er hat dir aufgetragen, jeden Kundschafter auszurauben und zu überprüfen, ob eine Botschaft dabei ist, die mit ''cc'' verschlüsselt wurde. Dies ist hier der Fall, also musst du die Botschaft entschlüsseln. Dafür musst du mithilfe von HTTP Get die Package-Destination ebenfalls auf cc stellen, dann sollte der Text korrekt untenstehen.'}
   type: Label
-- layout_properties: {grid_position: 'GFSFSB,SUBGWT'}
-  name: guess_box
-  properties: {}
-  type: TextBox
 - layout_properties: {grid_position: 'AHSULF,EALAJD'}
   name: status_label
   properties: {}
@@ -16,5 +12,9 @@ components:
   name: prove_button
   properties: {text: Überprüfe}
   type: Button
+- layout_properties: {grid_position: 'XJNSME,OTAEEN'}
+  name: label_2
+  properties: {text: Das hier funktioniert noch nicht richtig!}
+  type: Label
 container: {type: ColumnPanel}
 is_package: true
