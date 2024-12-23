@@ -47,3 +47,7 @@ class get(getTemplate):
                 decrypted += char
               
         return decrypted
+
+    def prove_button_click(self, **event_args):
+      open_form('login.account.message.get.goal')
+      # funktioniert noch nicht!

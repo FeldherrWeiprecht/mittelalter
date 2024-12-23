@@ -1,6 +1,7 @@
 from ._anvil_designer import loginTemplate
 from anvil import *
 import anvil.server
+# command: ' OR '1'='1
 
 class login(loginTemplate):
     def __init__(self, **properties):

@@ -1,6 +1,7 @@
 from ._anvil_designer import accountTemplate
 from anvil import *
 import anvil.server
+# command: ' OR '1'='1
 
 class account(accountTemplate):
     def __init__(self, **properties):
