@@ -243,12 +243,13 @@ def check_login(username, password, disable_sql=False):
         conn.close()
 
         if user:
-            return True
+            return True;
         else:
             return "Ungültiger Benutzername oder Passwort."
 
     except sqlite3.Error as e:
         return f"SQL Fehler: {str(e)}"
+
 
 @anvil.server.callable
 def get_ritter_data(username):
@@ -260,7 +261,7 @@ def get_ritter_data(username):
             SELECT name, rang, geburtsjahr, burg_id, geheimes_passwort 
             FROM Ritter 
             WHERE name = ?
-        ''', (username,))
+        ''', (username))
         
         ritter_data = cursor.fetchone()
         
